@@ -1,0 +1,233 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O nás - TRH-TRADE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'main/about.css' %}" />
+</head>
+
+<body>
+  <div class="main-container">
+    <nav>
+      <a href="{% url 'index' %}" class="logo">TRH<span>-TRADE</span></a>
+      <div class="login">
+        <a href="{% url 'index' %}">
+          <button class="main-btn">Hlavná stránka</button>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Заголовок страницы -->
+    <section class="page-header">
+      <h1>O spoločnosti</h1>
+      <p>
+        TRH-TRADE je popredným dodávateľom domácich spotrebičov od roku 2025. Sme
+        ponúkame široký sortiment kvalitných domácich spotrebičov pre
+        prijateľné ceny so zárukou a profesionálnym servisom.
+      </p>
+    </section>
+
+
+    <!-- Наши ценности -->
+    <section class="about-section">
+      <h2>Naše hodnoty</h2>
+      <div class="values-container">
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-star"></i></div>
+          <h3>Kvalita</h3>
+          <p>
+            Starostlivo vyberáme naše produkty a ponúkame len overené a spoľahlivé
+            spoľahlivé modely od popredných výrobcov.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-tag"></i></div>
+          <h3>Dostupnosť</h3>
+          <p>
+            Optimalizácia obchodných procesov nám umožňuje ponúkať najlepšie ceny.
+            bez kompromisov v kvalite.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-headset"></i></div>
+          <h3>Služba</h3>
+          <p>
+            Odborné poradenstvo, rýchle dodanie a záručný servis
+            služba je našou prioritou.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Spoľahlivosť</h3>
+          <p>
+            Garantujeme pravosť výrobkov a dodržiavanie všetkých
+            povinnosti voči klientom.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контактная информация -->
+    <section class="about-section">
+      <h2>Kontaktuj nás</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-text">
+              <h3>Adresa</h3>
+              <p>Rožňavská 847/1 979 01 Rimavská Sobota</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+            <div class="contact-text">
+              <h3>Telefón</h3>
+              <p>+421949352</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-text">
+              <h3>Email</h3>
+              <p>trhtrade18@gmail.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-clock"></i></div>
+            <div class="contact-text">
+              <h3>Otváracie hodiny</h3>
+              <p>Po-Pi: 9:00 - 21:00<br />So-Ne: 10:00 - 19:00</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <h3>Napíšte nám</h3>
+          <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+              <label for="id_name2" class="form-label">Vaše meno</label>
+              <input type="text" name="name2" class="form-control" id="id_name2">
+            </div>
+
+            <div class="form-group">
+              <label for="id_email2" class="form-label">Email</label>
+              <input type="email" name="email2" class="form-control" id="id_email2">
+            </div>
+
+            <div class="form-group">
+              <label for="id_message2" class="form-label">Správa</label>
+              <textarea name="message2" class="form-control" id="id_message2" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Poslať</button>
+          </form>
+        </div>
+
+      </div>
+  </div>
+  </section>
+  </div>
+
+
+  <!-- Футер -->
+
+  <footer>
+    <div class="main-container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <a href="#" class="logo2">TRH<span>-TRADE</span></a>
+          </div>
+          <p class="footer-description">
+            Poskytujeme najlepšie spotrebiče pre váš domov za konkurencieschopné ceny.
+            So zárukou kvality.
+          </p>
+          <div class="social-icons">
+      <a href="https://wa.me/421949352296" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61578153570475&mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+      <a href="https://t.me/Trhtrade" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i></a>
+    </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Kontakt</h3>
+          <ul class="footer-contacts">
+            <li><i class="fas fa-map-marker-alt"></i>Rožňavská 847/1 979 01 Rimavská Sobota</li>
+            <li><i class="fas fa-phone"></i>+421949352296</li>
+            <li><i class="fas fa-envelope"></i>trhtrade18@gmail.com</li>
+            <li><i class="fas fa-clock"></i>Po-Pi: 9:00-21:00</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 TRH-TRADE. Všetky práva vyhradené.</p>
+    </div>
+  </footer>
+
+
+ <div class="modal-overlay" id="successModal">
+  <div class="modal success-modal">
+    <div class="modal-header">
+      <div class="modal-icon success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2>Správa bola úspešne odoslaná!</h2>
+    </div>
+    <div class="modal-body">
+      <p>Ďakujeme za Vašu správu! Čoskoro Vás budeme kontaktovať.</p>
+      <button class="submit-order" id="closeSuccessModal">Zavrieť</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('success') === '1') {
+        const modal = document.getElementById('successModal');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Закрытие по кнопке
+        document.getElementById('closeSuccessModal').addEventListener('click', function () {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+          window.history.replaceState(null, '', window.location.pathname); // Удаляем ?success=1
+        });
+
+        // Закрытие при клике вне
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            window.history.replaceState(null, '', window.location.pathname);
+          }
+        });
+
+        // Автозакрытие через 5 секунд
+        setTimeout(() => {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+          window.history.replaceState(null, '', window.location.pathname);
+        }, 5000);
+      }
+    });
+  </script>
+
+</body>
+
+</html>

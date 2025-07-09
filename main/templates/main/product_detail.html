@@ -1,0 +1,336 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} — TRH-TRADE</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{% static 'main/product_detail.css' %}">
+</head>
+
+<style>
+    .productSwiper {
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  margin: auto;
+}
+
+.productSwiper .swiper-slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+</style>
+
+<body>
+    <div class="main-container">
+        <nav>
+            <a href="{% url 'index' %}" class="logo">TRH<span>-TRADE</span></a>
+            <div class="main-btn-block">
+                <a href="{% url 'index' %}">
+                    <button class="main-btn">Hlavná stránka</button>
+                </a>
+            </div>
+        </nav>
+
+        <div class="breadcrumbs">
+            <a href="{% url 'index' %}">Hlavná stránka</a>
+            <span>/</span>
+            <span>{{ product.category.name }}</span>
+            <span>/</span>
+            <span>{{ product.name }}</span>
+        </div>
+
+        <div class="product-container">
+            <div class="swiper productSwiper">
+                <div class="swiper-wrapper">
+                    {% if product.main_image %}
+                    <div class="swiper-slide">
+                        <img src="{{ product.main_image.url }}" />
+                    </div>
+                    {% endif %}
+                    {% if product.image1 %}
+                    <div class="swiper-slide">
+                        <img src="{{ product.image1.url }}" />
+                    </div>
+                    {% endif %}
+                    {% if product.image2 %}
+                    <div class="swiper-slide">
+                        <img src="{{ product.image2.url }}" />
+                    </div>
+                    {% endif %}
+                    {% if product.image3 %}
+                    <div class="swiper-slide">
+                        <img src="{{ product.image3.url }}" />
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Навигация -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+
+                <!-- Пагинация -->
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="product-info">
+                <h1 class="product-title">{{ product.name }}</h1>
+
+                <div class="product-price">{{ product.price }} €</div>
+
+                <p class="product-description">{{ product.description }}</p>
+
+                <div class="actions">
+                    <button class="add-to-cart" id="openModalBtn">
+                        <i class="fas fa-shopping-cart"></i> Kúpiť
+                    </button>
+                </div>
+
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Záruka</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-box-open"></i>
+                        <span>Vyzdvihnutie je k dispozícii</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="product-tabs">
+            <div class="tabs-header">
+                <button class="tab-btn active" data-tab="description">Описание</button>
+                <button class="tab-btn" data-tab="specs">Характеристики</button>
+            </div>
+
+            <div class="tab-content active" id="description">
+                <h2>Полное описание</h2>
+                <p>{{ product.full_description }}</p>
+            </div>
+
+            <div class="tab-content" id="specs">
+                <h2>Характеристики</h2>
+                <table class="specs-table">
+                    {% if product.length %}<tr>
+                        <td>Длина</td>
+                        <td>{{ product.length }} см</td>
+                    </tr>{% endif %}
+                    {% if product.width %}<tr>
+                        <td>Ширина</td>
+                        <td>{{ product.width }} см</td>
+                    </tr>{% endif %}
+                    {% if product.height %}<tr>
+                        <td>Высота</td>
+                        <td>{{ product.height }} см</td>
+                    </tr>{% endif %}
+                    {% if product.weight %}<tr>
+                        <td>Вес</td>
+                        <td>{{ product.weight }} кг</td>
+                    </tr>{% endif %}
+                    {% if product.color %}<tr>
+                        <td>Цвет</td>
+                        <td>{{ product.color }}</td>
+                    </tr>{% endif %}
+                    {% if product.body_material %}<tr>
+                        <td>Материал корпуса</td>
+                        <td>{{ product.body_material }}</td>
+                    </tr>{% endif %}
+                    {% if product.power %}<tr>
+                        <td>Мощность</td>
+                        <td>{{ product.power }}</td>
+                    </tr>{% endif %}
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="main-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <a href="#" class="logo2">TRH<span>-TRADE</span></a>
+                    </div>
+                    <p class="footer-description">
+                        Poskytujeme najlepšie spotrebiče pre váš domov za konkurencieschopné ceny.
+                        So zárukou kvality.
+                    </p>
+                    <div class="social-icons">
+      <a href="https://wa.me/421949352296" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61578153570475&mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+      <a href="https://t.me/Trhtrade" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i></a>
+    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <ul class="footer-contacts">
+                        <li><i class="fas fa-map-marker-alt"></i>Rožňavská 847/1 979 01 Rimavská Sobota</li>
+                        <li><i class="fas fa-phone"></i>+421949352296</li>
+                        <li><i class="fas fa-envelope"></i>trhtrade18@gmail.com</li>
+                        <li><i class="fas fa-clock"></i>Po-Pi: 9:00-21:00</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 TRH-TRADE. Všetky práva vyhradené.</p>
+        </div>
+    </footer>
+
+
+    <div class="main-container">
+        <!-- Модальное окно оформления заказа -->
+        <div class="modal-overlay" id="orderModal">
+            <div class="modal">
+                <button class="modal-close" id="closeModalBtn">&times;</button>
+                <div class="modal-header">
+                    <div class="modal-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h2>Vytvoriť účet</h2>
+                </div>
+                <div class="modal-body">
+                    <p>Vyplňte prosím nižšie uvedený formulár a my Vás budeme kontaktovať pre potvrdenie Vašej
+                        objednávky.</p>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form.name.id_for_label }}" class="form-label">Vaše meno</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.phone.id_for_label }}" class="form-label">Telefón</label>
+                            {{ form.phone }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                            {{ form.email }}
+                        </div>
+                        <button type="submit" class="submit-order">Odoslať objednávku</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно успешного отправления -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal success-modal">
+            <div class="modal-header">
+                <div class="modal-icon success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Objednávka bola úspešne odoslaná!</h2>
+            </div>
+            <div class="modal-body">
+                <p>Ďakujeme za vašu objednávku! Náš manažér vás bude čoskoro kontaktovať na potvrdenie.</p>
+                <button class="submit-order" id="closeSuccessModal">Veľký</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // Tabs
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                document.getElementById(this.dataset.tab).classList.add('active');
+            });
+        });
+
+
+        // Получаем все необходимые элементы
+        const orderModal = document.getElementById('orderModal');
+        const successModal = document.getElementById('successModal');
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const closeSuccessModalBtn = document.getElementById('closeSuccessModal');
+        const orderForm = document.querySelector('form');
+
+        // Открываем модальное окно заказа
+        openModalBtn.addEventListener('click', () => {
+            orderModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Закрываем модальное окно заказа
+        closeModalBtn.addEventListener('click', () => {
+            orderModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Закрываем модальное окно успеха
+        closeSuccessModalBtn.addEventListener('click', () => {
+            successModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Обработка отправки формы
+        orderForm.addEventListener('submit', function (e) {
+
+            // Закрываем модальное окно заказа
+            orderModal.classList.remove('active');
+
+            // Показываем модальное окно успеха
+            successModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Опционально: автоматически закрываем через 5 секунд
+            setTimeout(() => {
+                successModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }, 5000);
+
+            // Опционально: отправляем форму (раскомментируйте если нужно)
+            // this.submit();
+        });
+
+        // Закрытие модальных окон при клике вне их области
+        [orderModal, successModal].forEach(modal => {
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+
+
+        const swiper = new Swiper(".productSwiper", {
+            loop: true,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Obchod S Domácimi Spotrebičmi</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'main/index.css' %}" />
+</head>
+
+<body>
+  <div class="main-container">
+    <nav>
+      <a href="{% url 'index' %}" class="logo">TRH<span>-TRADE</span></a>
+      <div class="about-btn-block">
+        <a href="{% url 'about' %}">
+          <button class="about-btn">O nás</button>
+        </a>
+      </div>
+    </nav>
+
+    <header>
+      <div class="left">
+        <h1>Moderný <span>spotrebič</span> in TRH-TRADE</h1>
+        <p>Vyberte si domáce spotrebiče od najlepších výrobcov s dodávkou domov.</p>
+        <a href="#catalog" id="buy-now-btn">
+          <i class="bx bxs-basket"></i>
+          <span>Kúpiť teraz</span>
+        </a>
+      </div>
+      <img src="/media/products/header.png" alt="Техника" />
+    </header>
+
+    <h2 class="seperator" id="catalog">Katalóg domácich spotrebičov</h2>
+
+    <!-- Форма поиска -->
+    <div class="search-container">
+      <form class="search-form" method="get" action="{% url 'index' %}#catalog">
+        <div class="search-input-wrapper">
+          <i class='bx bx-search search-icon'></i>
+          <input type="text" name="q" placeholder="Поиск товаров..." value="{{ search_query }}">
+        </div>
+        <button type="submit" class="search-btn">
+          <span>Nájsť</span>
+        </button>
+      </form>
+
+      <a href="{% url 'index' %}#catalog" class="all-products-btn">
+        <i class='bx bx-list-ul'></i>
+        <span>Všetky produkty</span>
+      </a>
+    </div>
+
+
+    <!-- Отображение категорий и подкатегорий -->
+    <div class="catalog">
+      <div class="category">
+        {% for category in root_categories %}
+        <div class="category-item">
+          <h3>{{ category.name }}</h3>
+          <div class="brands">
+            {% for subcategory in category.children.all %}
+            <p>
+              <a href="?category={{ subcategory.id }}#catalog">{{ subcategory.name }}</a>
+            </p>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Отображение товаров -->
+      <h2 class="all-product-h">{% if search_query %}Výsledky Vyhľadávania "{{ search_query }}"{% else %}Všetky
+        produkty{% endif %}</h2>
+
+      <div class="product">
+        {% for product in products %}
+        <a href="{% url 'product_detail' product.pk %}" class="item">
+          {% if product.main_image and product.main_image.name %}
+          <img src="{{ product.main_image.url }}">
+          {% else %}
+          <img src="{% static 'main/no-image.jpg' %}" alt="Нет изображения">
+          {% endif %}
+          <div class="info">
+            <div>
+              <h5>{{ product.name }}</h5>
+              <div class="btc">
+                <i class="bx bx-category"></i>
+                <p>{{ product.category.name }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="bid">
+            <p>Cena: <span>{{ product.price }} €</span></p>
+          </div>
+        </a>
+        {% empty %}
+        <p>Žiadne produkty v košíku.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+
+  <footer>
+    <div class="main-container">
+     <div class="footer-content">
+  <div class="footer-section">
+    <div class="footer-logo">
+      <a href="#" class="logo2">TRH<span>-TRADE</span></a>
+    </div>
+    <p class="footer-description">
+      Poskytujeme najlepšie spotrebiče pre váš domov za konkurencieschopné ceny.
+      So zárukou kvality.
+    </p>
+    <div class="social-icons">
+      <a href="https://wa.me/421949352296" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61578153570475&mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+      <a href="https://t.me/Trhtrade" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-section">
+    <h3>Kontakt</h3>
+    <ul class="footer-contacts">
+      <li><i class="fas fa-map-marker-alt"></i>Rožňavská 847/1 979 01 Rimavská Sobota</li>
+      <li><i class="fas fa-phone"></i>+421949352296</li>
+      <li><i class="fas fa-envelope"></i>trhtrade18@gmail.com</li>
+      <li><i class="fas fa-clock"></i>Po-Pi: 9:00-21:00</li>
+    </ul>
+  </div>
+</div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 TRH-TRADE. Všetky práva vyhradené.</p>
+    </div>
+  </footer>
+
+  <script>
+
+    document.getElementById('buy-now-btn').addEventListener('click', function (e) {
+      e.preventDefault();
+      const catalogSection = document.getElementById('catalog');
+      if (catalogSection) {
+        catalogSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+
+
+        history.pushState(null, null, '#catalog');
+      }
+    });
+
+
+    window.addEventListener('load', function () {
+      if (window.location.hash === '#catalog') {
+        const catalogSection = document.getElementById('catalog');
+        if (catalogSection) {
+          catalogSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+
+
+    document.querySelectorAll(".category-item").forEach((item) => {
+      let timeout;
+      item.addEventListener("mouseenter", () => {
+        clearTimeout(timeout);
+        item.classList.add("show");
+      });
+      item.addEventListener("mouseleave", () => {
+        timeout = setTimeout(() => {
+          item.classList.remove("show");
+        }, 100);
+      });
+      const brands = item.querySelector(".brands");
+      if (brands) {
+        brands.addEventListener("mouseenter", () => {
+          clearTimeout(timeout);
+          item.classList.add("show");
+        });
+        brands.addEventListener("mouseleave", () => {
+          timeout = setTimeout(() => {
+            item.classList.remove("show");
+          }, 100);
+        });
+      }
+    });
+  </script>
+</body>
