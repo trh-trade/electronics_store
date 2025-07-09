@@ -3,3 +3,4 @@ gunicorn
 psycopg2-binary
 python-decouple
 Pillow
+whitenoise==6.9.0
