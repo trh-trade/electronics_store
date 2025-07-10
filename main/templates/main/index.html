@@ -79,7 +79,7 @@
       <div class="product">
         {% for product in products %}
         <a href="{% url 'product_detail' product.pk %}" class="item">
-          {% if product.main_image and product.main_image.name %}
+          {% if product.main_image and product.main_image.file %}
   <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
 {% else %}
   <img src="{% static 'main/no-image.jpg' %}" alt="Нет изображения">
