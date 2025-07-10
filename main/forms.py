@@ -2,7 +2,7 @@ from django import forms
 
 class OrderForm(forms.Form):
     name = forms.CharField(
-        label='Ваше имя',
+        label='Vaše meno',
         max_length=100,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
@@ -11,7 +11,7 @@ class OrderForm(forms.Form):
     )
 
     phone = forms.CharField(
-        label='Телефон',
+        label='Telefón',
         max_length=20,
         widget=forms.TextInput(attrs={
             'class': 'form-control',

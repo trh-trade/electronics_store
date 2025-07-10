@@ -41,7 +41,7 @@
       <form class="search-form" method="get" action="{% url 'index' %}#catalog">
         <div class="search-input-wrapper">
           <i class='bx bx-search search-icon'></i>
-          <input type="text" name="q" placeholder="Поиск товаров..." value="{{ search_query }}">
+          <input type="text" name="q" placeholder="Čo hľadáte..." value="{{ search_query }}">
         </div>
         <button type="submit" class="search-btn">
           <span>Nájsť</span>
@@ -82,7 +82,8 @@
           {% if product.main_image and product.main_image.name %}
           <img src="{{ product.main_image.url }}">
           {% else %}
-          <img src="{% static 'main/no-image.jpg' %}" alt="Нет изображения">
+          <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
+
           {% endif %}
           <div class="info">
             <div>
