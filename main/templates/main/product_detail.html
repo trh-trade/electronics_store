@@ -110,44 +110,44 @@
 
         <div class="product-tabs">
             <div class="tabs-header">
-                <button class="tab-btn active" data-tab="description">Описание</button>
-                <button class="tab-btn" data-tab="specs">Характеристики</button>
+                <button class="tab-btn active" data-tab="description">Detaily produktu</button>
+                <button class="tab-btn" data-tab="specs">Charakteristiky</button>
             </div>
 
             <div class="tab-content active" id="description">
-                <h2>Полное описание</h2>
+                <h2>Detaily produktu</h2>
                 <p>{{ product.full_description }}</p>
             </div>
 
             <div class="tab-content" id="specs">
-                <h2>Характеристики</h2>
+                <h2>Charakteristiky</h2>
                 <table class="specs-table">
                     {% if product.length %}<tr>
-                        <td>Длина</td>
+                        <td>Dĺžka</td>
                         <td>{{ product.length }} см</td>
                     </tr>{% endif %}
                     {% if product.width %}<tr>
-                        <td>Ширина</td>
+                        <td>Šírka</td>
                         <td>{{ product.width }} см</td>
                     </tr>{% endif %}
                     {% if product.height %}<tr>
-                        <td>Высота</td>
+                        <td>Výška</td>
                         <td>{{ product.height }} см</td>
                     </tr>{% endif %}
                     {% if product.weight %}<tr>
-                        <td>Вес</td>
+                        <td>Hmotnosť</td>
                         <td>{{ product.weight }} кг</td>
                     </tr>{% endif %}
                     {% if product.color %}<tr>
-                        <td>Цвет</td>
+                        <td>Farba</td>
                         <td>{{ product.color }}</td>
                     </tr>{% endif %}
                     {% if product.body_material %}<tr>
-                        <td>Материал корпуса</td>
+                        <td>Materiál tela</td>
                         <td>{{ product.body_material }}</td>
                     </tr>{% endif %}
                     {% if product.power %}<tr>
-                        <td>Мощность</td>
+                        <td>Výkon</td>
                         <td>{{ product.power }}</td>
                     </tr>{% endif %}
                 </table>
