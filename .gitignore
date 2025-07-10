@@ -9,7 +9,7 @@ local_settings.py
 db.sqlite3
 
 # Media and static
-media/
+# media/
 staticfiles/
 
 # Environment variables
