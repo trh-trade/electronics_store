@@ -16,7 +16,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'electronics_store.middleware.RedirectToWWW',  # <- замените your_app на имя вашего приложения
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  
     'django.contrib.sessions.middleware.SessionMiddleware',
